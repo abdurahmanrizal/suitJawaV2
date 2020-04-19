@@ -39,14 +39,28 @@ getPilPlayer.forEach(function (pil) {
     const hasil = ruleGame(player, computer);
     const scorePlayer = document.querySelector(".score-player");
     const scoreComputer = document.querySelector(".score-computer");
-    putar();
-    setTimeout(function () {
-      const imgComp = document.querySelector(".img-komputer");
-      imgComp.setAttribute("src", "img/" + computer + ".png");
-      const info = document.querySelector(".info");
-      info.innerHTML = hasil;
-      if (hasil == "MENANG !") scorePlayer.innerHTML = ++wins;
-      if (hasil == "KALAH !") scoreComputer.innerHTML = ++loses;
-    }, 1000);
+    if (wins == 10) {
+      alert("Selamat anda menang!!");
+      wins = 0;
+      loses = 0;
+      scorePlayer.innerHTML = 0;
+      scoreComputer.innerHTML = 0;
+    } else if (loses == 10) {
+      alert("WAH, anda kalah!! Coba lagi kawan");
+      wins = 0;
+      loses = 0;
+      scorePlayer.innerHTML = 0;
+      scoreComputer.innerHTML = 0;
+    } else {
+      putar();
+      setTimeout(function () {
+        const imgComp = document.querySelector(".img-komputer");
+        imgComp.setAttribute("src", "img/" + computer + ".png");
+        const info = document.querySelector(".info");
+        info.innerHTML = hasil;
+        if (hasil == "MENANG !") scorePlayer.innerHTML = ++wins;
+        if (hasil == "KALAH !") scoreComputer.innerHTML = ++loses;
+      }, 1000);
+    }
   });
 });
